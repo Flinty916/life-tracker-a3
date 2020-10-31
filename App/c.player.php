@@ -17,7 +17,9 @@ class Player {
     protected $copStats;
     protected $medStats;
     protected $playtime;
-    protected $inv;
+    protected $invCiv;
+    protected $invCop;
+    protected $invMed;
 
     public function __construct($pid)
     {
@@ -73,7 +75,9 @@ class Player {
             $this->copStats = $this->destring($stats['cop_stats'], true);
             $this->medStats = $this->destring($stats['med_stats'], true);
             $this->playtime = $this->destring($stats['playtime'], true);
-            $this->inv = $this->setInv($stats['civ_gear']);
+            $this->invCiv = $this->setInv($stats['civ_gear']);
+            $this->invCop = $this->setInv($stats['cop_gear']);
+            $this->invMed = $this->setInv($stats['med_gear']);
             return true;
         }
         else {
@@ -112,7 +116,7 @@ class Player {
     }
     public function getInv() {
         $inv = array();
-        foreach ($this->inv as $item) {
+        foreach ($this->invCiv as $item) {
             if(is_object($item) && $item->class !== null)
                 $inv[] = $item->displayName;
             elseif(strlen($item) > 1)
@@ -120,4 +124,26 @@ class Player {
         }
         return array_count_values($inv);
     }
+    public function getCopInv() {
+        $inv = array();
+        foreach ($this->invCop as $item) {
+            if(is_object($item) && $item->class !== null)
+                $inv[] = $item->displayName;
+            elseif(strlen($item) > 1)
+                $inv[] = $item;
+        }
+        return array_count_values($inv);
+    }
+
+    public function getMedInv() {
+        $inv = array();
+        foreach ($this->invMed as $item) {
+            if(is_object($item) && $item->class !== null)
+                $inv[] = $item->displayName;
+            elseif(strlen($item) > 1)
+                $inv[] = $item;
+        }
+        return array_count_values($inv);
+    }
+
 }

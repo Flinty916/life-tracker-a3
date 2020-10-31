@@ -16,6 +16,10 @@ $player = new \mystats\Player(76561198044219921);
         <?php
         print_r($player->getInv());
         ?>
+        <br />
+        <?php
+        print_r($player->getCopInv());
+        ?>
     </pre>
 </body>
 </html>

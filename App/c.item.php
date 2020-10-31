@@ -14,10 +14,10 @@ class Item
     {
         try {
             $this->validateItem($item);
+            $this->setItem($item);
         } catch (Exception $e) {
             echo '<strong>ERROR: ' . $e->getMessage() . '</strong>';
         }
-        $this->setItem($item);
     }
 
     protected function validateItem($item)
@@ -36,12 +36,11 @@ class Item
                 $this->class = $item->classname;
                 $this->displayName = $item->displayName;
                 $this->img = $item->image;
+                return true;
             }
         }
         catch (Exception $e) {
-            $this->class = null;
-            $this->displayName = null;
-            $this->img = null;
+            throw new Exception('Class not found!');
         }
     }
 }
