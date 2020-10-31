@@ -3,7 +3,6 @@
 namespace mystats;
 
 use Exception;
-use KubAT\PhpSimple\HtmlDomParser as html;
 
 class Item
 {
