@@ -118,6 +118,6 @@ class Player {
             elseif(strlen($item) > 1)
                 $inv[] = $item;
         }
-        return $inv;
+        return array_count_values($inv);
     }
 }
